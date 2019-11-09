@@ -39,4 +39,4 @@ SRC += ssd1306.c
 # if firmware size over limit, try this option
 # CFLAGS += -flto
 
-DEFAULT_FOLDER = lily58/rev1
+DEFAULT_FOLDER = sofle/rev1

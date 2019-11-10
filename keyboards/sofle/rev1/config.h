@@ -51,9 +51,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define LOCKING_RESYNC_ENABLE
 
 /* ws2812 RGB LED */
-#define RGB_DI_PIN D3
-#define RGBLED_NUM 12    // Number of LEDs
+// #define RGB_DI_PIN D3
+// #define RGBLED_NUM 12    // Number of LEDs
 
+/* encoder support */
+#define ENCODERS_PAD_A { F5 }
+#define ENCODERS_PAD_B { F4 }
+#define ENCODERS_PAD_A_RIGHT { F4 }
+#define ENCODERS_PAD_B_RIGHT { F5 }
+#define ENCODER_RESOLUTION 4
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.

@@ -246,8 +246,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
 #ifdef SSD1306OLED
     set_keylog(keycode, record);
-#endif
     set_timelog();
+#endif
   }
 
   switch (keycode) {
@@ -287,4 +287,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
   }
   return true;
+}
+
+/* encoder support */
+
+void encoder_update_user(uint8_t index, bool clockwise) {
+  if (index == 0) { /* First encoder */
+    if (clockwise) {
+      tap_code(KC_DOWN);
+    } else {
+      tap_code(KC_UP);
+    }
+  } else if (index == 1) {
+    if (clockwise) {
+      tap_code(KC_DOWN);
+    } else {
+      tap_code(KC_UP);
+    }
+  }
 }

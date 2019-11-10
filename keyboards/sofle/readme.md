@@ -1,12 +1,14 @@
-# Lily58
+# Sofle Keyboard
 
-Lily58 is 6×4+5keys column-staggered split keyboard.
+Sofle is 6×4+5 keys column-staggered split keyboard. Based on Lily58, Corne and Helix keyboards.
+
+It is currently in development.
 
 ![Lily58_01](https://user-images.githubusercontent.com/6285554/50394214-72479880-079f-11e9-9d91-33fdbf1d7715.jpg)
-![2018-12-24 17 39 58](https://user-images.githubusercontent.com/6285554/50394779-05360200-07a3-11e9-82b5-066fd8907ecf.png)
-Keyboard Maintainer: [Naoki Katahira](https://github.com/kata0510/) [Twitter:@F_YUUCHI](https://twitter.com/F_YUUCHI)  
-Hardware Supported: Lily58 PCB, ProMicro  
-Hardware Availability: [PCB & Case Data](https://github.com/kata0510/Lily58)
+
+Keyboard Maintainer: [Josef Adamcik](https://josef-adamcik.cz) [Twitter:@josefadamcik](https://twitter.com/josefadamcik)  
+Hardware Supported: SofleKeyboard PCB, ProMicro  
+Hardware Availability: [PCB & Case Data](https://github.com/josefadamcik/SofleKeyboard)
 
 Make example for this keyboard (after setting up your build environment):
 

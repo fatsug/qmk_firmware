@@ -193,8 +193,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-int RGB_current_mode;
-
 // Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
@@ -204,6 +202,8 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   }
 }
 
+
+#ifdef OLED_DRIVER_ENABLE
 static void render_logo(void) {
   static const char PROGMEM qmk_logo[] = {
     0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
@@ -213,20 +213,63 @@ static void render_logo(void) {
   oled_write_P(qmk_logo, false);
 }
 
-static void print_status(void) {
+// static void print_status_wide(void) {
+//   // Print current mode
+
+//   switch (biton32(default_layer_state)) {
+//   case _W_COLEMAK:
+//     oled_write_P(PSTR("Mode: Colemak Linux\n"), false);
+//     break;
+//   case _M_COLEMAK:
+//     oled_write_P(PSTR("Mode: Colemak Mac\n"), false);
+//     break;
+//   default:
+//     oled_write_P(PSTR("Mode: Undefined\n"), false);
+//   }
+//   // Print current layer
+//   oled_write_P(PSTR("Layer: "), false);
+//   switch (biton32(layer_state)) {
+//     case _M_COLEMAK:
+//     case _W_COLEMAK:
+//       oled_write_P(PSTR("Base\n"), false);
+//       break;
+//     case _M_RAISE:
+//     case _W_RAISE:
+//       oled_write_P(PSTR("Raise\n"), false);
+//       break;
+//     case _M_LOWER:
+//     case _W_LOWER:
+//       oled_write_P(PSTR("Lower\n"), false);
+//       break;
+//     case _ADJUST:
+//       oled_write_P(PSTR("Adjust\n"), false);
+//       break;
+//     default:
+//       oled_write_ln_P(PSTR("Undefined"), false);
+//   }
+
+//   uint8_t led_usb_state = host_keyboard_leds();
+//   oled_write_ln_P(led_usb_state & (1<<USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
+// }
+
+static void print_status_narrow(void) {
   // Print current mode
+  oled_write_P(PSTR("\n\n"), false);
+  oled_write_ln_P(PSTR("MODE"), false);
+  oled_write_ln_P(PSTR(""), false);
   switch (biton32(default_layer_state)) {
   case _W_COLEMAK:
-    oled_write_P(PSTR("Mode: Colemak Linux\n"), false);
+    oled_write_P(PSTR("Clmk\nLinux"), false);
     break;
   case _M_COLEMAK:
-    oled_write_P(PSTR("Mode: Colemak Mac\n"), false);
+    oled_write_P(PSTR("Clmk\nMac\n"), false);
     break;
   default:
-    oled_write_P(PSTR("Mode: Undefined\n"), false);
+    oled_write_P(PSTR("Undefined\n"), false);
   }
+  oled_write_P(PSTR("\n\n"), false);
   // Print current layer
-  oled_write_P(PSTR("Layer: "), false);
+  oled_write_ln_P(PSTR("LAYER"), false);
   switch (biton32(layer_state)) {
     case _M_COLEMAK:
     case _W_COLEMAK:
@@ -234,30 +277,42 @@ static void print_status(void) {
       break;
     case _M_RAISE:
     case _W_RAISE:
-      oled_write_P(PSTR("Raise\n"), false);
+      oled_write_P(PSTR("Raise"), false);
       break;
     case _M_LOWER:
     case _W_LOWER:
-      oled_write_P(PSTR("Lower\n"), false);
+      oled_write_P(PSTR("Lower"), false);
       break;
     case _ADJUST:
-      oled_write_P(PSTR("Adjust\n"), false);
+      oled_write_P(PSTR("Adj\n"), false);
       break;
     default:
       oled_write_ln_P(PSTR("Undefined"), false);
   }
-
+  oled_write_P(PSTR("\n\n"), false);
   uint8_t led_usb_state = host_keyboard_leds();
-  oled_write_ln_P(led_usb_state & (1<<USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
+  oled_write_ln_P(led_usb_state & (1<<USB_LED_CAPS_LOCK) ? PSTR("CPSLK") : PSTR("     "), false);
+}
+
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+  if (is_keyboard_master()) {
+    return OLED_ROTATION_270;  // flips the display 180 degrees if offhand
+  }
+  return rotation;
 }
 
 void oled_task_user(void) {
   if (is_keyboard_master()) {
-    print_status();
+    print_status_narrow();
   } else {
     render_logo();
   }
 }
+
+#endif
+
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {

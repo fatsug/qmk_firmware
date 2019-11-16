@@ -247,7 +247,8 @@ static void print_status(void) {
       oled_write_ln_P(PSTR("Undefined"), false);
   }
 
-  oled_write_ln_P(PSTR(""), false);
+  uint8_t led_usb_state = host_keyboard_leds();
+  oled_write_ln_P(led_usb_state & (1<<USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
 }
 
 void oled_task_user(void) {

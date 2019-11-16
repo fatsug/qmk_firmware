@@ -30,12 +30,9 @@ RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight.
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 ENCODER_ENABLE = yes
-CUSTOM_MATRIX = yes
-SPLIT_KEYBOARD= custom
-
-SRC += i2c.c
-SRC += serial.c
-SRC += ssd1306.c
+CUSTOM_MATRIX = no
+SPLIT_KEYBOARD = yes
+OLED_DRIVER_ENABLE = yes
 
 # if firmware size over limit, try this option
 # CFLAGS += -flto

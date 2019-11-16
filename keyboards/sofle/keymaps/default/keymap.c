@@ -5,15 +5,8 @@
   #include "split_util.h"
 #endif
 
-
 extern keymap_config_t keymap_config;
-
-#ifdef RGBLIGHT_ENABLE
-//Following line allows macro to read current RGB settings
-extern rgblight_config_t rgblight_config;
-#endif
-
-extern uint8_t is_master;
+// extern uint8_t is_master;
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
@@ -66,9 +59,7 @@ enum custom_keycodes {
 #define KC_XXXX KC_NO
 #define KC_RESET RESET
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
@@ -260,8 +251,7 @@ static void print_status(void) {
 }
 
 void oled_task_user(void) {
-  if (is_master) {
-//   if (is_keyboard_master()) {
+  if (is_keyboard_master()) {
     print_status();
   } else {
     render_logo();

@@ -10,10 +10,10 @@ extern keymap_config_t keymap_config;
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
+    _M_QWERTY,
+    _W_QWERTY,
     _M_COLEMAK,
-    // _M_QWERTY,
     _W_COLEMAK,
-    // _W_QWERTY,
     _M_LOWER,
     _W_LOWER,
     _M_RAISE,
@@ -23,8 +23,8 @@ enum sofle_layers {
 
 enum custom_keycodes {
   KC_M_QWERTY = SAFE_RANGE,
-  KC_M_COLEMAK,
   KC_W_QWERTY,
+  KC_M_COLEMAK,
   KC_W_COLEMAK,
   KC_M_LOWER,
   KC_W_LOWER,
@@ -60,31 +60,37 @@ enum custom_keycodes {
 #define KC_RESET RESET
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* QWERTY
+/*
+ * QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * | ESC  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
+ * | Tab  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
+ *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            |      |      |      |      |/       /         \      \ |      |      |      |      |
+ *            `----------------------------------'           '------''---------------------------'
  */
-/*
- [_QWERTY] = LAYOUT( \
-  ESC,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,    GRV, \
-  TAB,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,    MINS, \
-  LCTRL, A,   S,    D,    F,    G,                     H,    J,    K,    L,    SCLN, QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, NO,      NO,  N,    M,    COMM, DOT,  SLSH, RSFT, \
-                    LGUI, LALT, LCTRL,LOWER, ENT,   SPC,  RAISE,   RCTRL,RALT, RGUI \
+[_M_QWERTY] = LAYOUT_kc( \
+  GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
+  TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
+  LSFT,  Z,   X,    C,    V,    B, XXXX,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
+           LCTRL,LALT,LGUI,M_LOWER, ENT,       SPC,  M_RAISE, RGUI, RALT, RCTRL \
 ),
-*/
-
-/* COLEMAK
+[_W_QWERTY] = LAYOUT_kc( \
+  GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
+  TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
+  LSFT,  Z,   X,    C,    V,    B, XXXX,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
+           LGUI, LALT,LCTRL,W_LOWER,ENT,        SPC,  W_RAISE, RCTRL,RALT, RGUI \
+),
+/*
+ * COLEMAK
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -258,6 +264,12 @@ static void print_status_narrow(void) {
   oled_write_ln_P(PSTR("MODE"), false);
   oled_write_ln_P(PSTR(""), false);
   switch (biton32(default_layer_state)) {
+  case _W_QWERTY:
+    oled_write_P(PSTR("Qwrt\nLinux"), false);
+    break;
+  case _M_QWERTY:
+    oled_write_P(PSTR("Qwrt\nMac\n"), false);
+    break;
   case _W_COLEMAK:
     oled_write_P(PSTR("Clmk\nLinux"), false);
     break;
@@ -273,6 +285,8 @@ static void print_status_narrow(void) {
   switch (biton32(layer_state)) {
     case _M_COLEMAK:
     case _W_COLEMAK:
+    case _M_QWERTY:
+    case _W_QWERTY:
       oled_write_P(PSTR("Base\n"), false);
       break;
     case _M_RAISE:
@@ -287,7 +301,7 @@ static void print_status_narrow(void) {
       oled_write_P(PSTR("Adj\n"), false);
       break;
     default:
-      oled_write_ln_P(PSTR("Undefined"), false);
+      oled_write_ln_P(PSTR("Undef"), false);
   }
   oled_write_P(PSTR("\n\n"), false);
   uint8_t led_usb_state = host_keyboard_leds();
@@ -309,13 +323,22 @@ void oled_task_user(void) {
     render_logo();
   }
 }
-
 #endif
-
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case KC_W_QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_W_QWERTY);
+      }
+      return false;
+      break;
+    case KC_M_QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_M_QWERTY);
+      }
+      return false;
+      break;
     case KC_W_COLEMAK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_W_COLEMAK);

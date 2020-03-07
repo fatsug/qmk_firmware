@@ -199,15 +199,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-// Setting ADJUST layer RGB back to default
-void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
-  if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
-    layer_on(layer3);
-  } else {
-    layer_off(layer3);
-  }
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  debug_matrix=true;
+  //debug_keyboard=true;
+  //debug_mouse=true;
 }
-
 
 #ifdef OLED_DRIVER_ENABLE
 static void render_logo(void) {
@@ -354,44 +352,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_M_LOWER:
       if (record->event.pressed) {
         layer_on(_M_LOWER);
-        update_tri_layer_RGB(_M_LOWER, _M_RAISE, _ADJUST);
+        update_tri_layer(_M_LOWER, _M_RAISE, _ADJUST);
       } else {
         layer_off(_M_LOWER);
-        update_tri_layer_RGB(_M_LOWER, _M_RAISE, _ADJUST);
+        update_tri_layer(_M_LOWER, _M_RAISE, _ADJUST);
       }
       return false;
       break;
     case KC_M_RAISE:
       if (record->event.pressed) {
         layer_on(_M_RAISE);
-        update_tri_layer_RGB(_M_LOWER, _M_RAISE, _ADJUST);
+        update_tri_layer(_M_LOWER, _M_RAISE, _ADJUST);
       } else {
         layer_off(_M_RAISE);
-        update_tri_layer_RGB(_M_LOWER, _M_RAISE, _ADJUST);
+        update_tri_layer(_M_LOWER, _M_RAISE, _ADJUST);
       }
       return false;
       break;
     case KC_W_LOWER:
       if (record->event.pressed) {
         layer_on(_W_LOWER);
-        update_tri_layer_RGB(_W_LOWER, _W_RAISE, _ADJUST);
+        update_tri_layer(_W_LOWER, _W_RAISE, _ADJUST);
       } else {
         layer_off(_W_LOWER);
-        update_tri_layer_RGB(_W_LOWER, _W_RAISE, _ADJUST);
+        update_tri_layer(_W_LOWER, _W_RAISE, _ADJUST);
       }
       return false;
       break;
     case KC_W_RAISE:
       if (record->event.pressed) {
         layer_on(_W_RAISE);
-        update_tri_layer_RGB(_W_LOWER, _W_RAISE, _ADJUST);
+        update_tri_layer(_W_LOWER, _W_RAISE, _ADJUST);
       } else {
         layer_off(_W_RAISE);
-        update_tri_layer_RGB(_W_LOWER, _W_RAISE, _ADJUST);
+        update_tri_layer(_W_LOWER, _W_RAISE, _ADJUST);
       }
       return false;
       break;
-
     case KC_ADJUST:
         if (record->event.pressed) {
           layer_on(_ADJUST);
@@ -407,15 +404,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void encoder_update_user(uint8_t index, bool clockwise) {
   if (index == 0) { /* First encoder */
     if (clockwise) {
-      tap_code(KC_DOWN);
+      tap_code(KC_PGDOWN);
     } else {
-      tap_code(KC_UP);
+      tap_code(KC_PGUP);
     }
   } else if (index == 1) {
     if (clockwise) {
-      tap_code(KC_DOWN);
+      tap_code(KC_PGDOWN);
     } else {
-      tap_code(KC_UP);
+      tap_code(KC_PGUP);
     }
   }
 }
+

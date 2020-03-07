@@ -1,12 +1,6 @@
-#include QMK_KEYBOARD_H
+#include "sofle.h"
+//#include QMK_KEYBOARD_H
 
-#ifdef PROTOCOL_LUFA
-  #include "lufa.h"
-  #include "split_util.h"
-#endif
-
-extern keymap_config_t keymap_config;
-// extern uint8_t is_master;
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
@@ -79,14 +73,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, XXXX,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, ENT,       SPC,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_QWERTY] = LAYOUT_kc( \
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, XXXX,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
            LGUI, LALT,LCTRL,W_LOWER,ENT,        SPC,  W_RAISE, RCTRL,RALT, RGUI \
 ),
 /*
@@ -109,14 +103,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, XXXX,       XXXX,   K,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,       XXXX,   K,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, ENT,       SPC,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_COLEMAK] = LAYOUT_kc( \
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, XXXX,        XXXX,  K,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,        XXXX,  K,    M, COMM,  DOT, SLSH,  RSFT, \
            LGUI, LALT,LCTRL,W_LOWER,ENT,        SPC,  W_RAISE, RCTRL,RALT, RGUI \
 ),
 /* LOWER
@@ -203,7 +197,7 @@ void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
   debug_enable=true;
   debug_matrix=true;
-  //debug_keyboard=true;
+  debug_keyboard=true;
   //debug_mouse=true;
 }
 
@@ -216,45 +210,6 @@ static void render_logo(void) {
 
   oled_write_P(qmk_logo, false);
 }
-
-// static void print_status_wide(void) {
-//   // Print current mode
-
-//   switch (biton32(default_layer_state)) {
-//   case _W_COLEMAK:
-//     oled_write_P(PSTR("Mode: Colemak Linux\n"), false);
-//     break;
-//   case _M_COLEMAK:
-//     oled_write_P(PSTR("Mode: Colemak Mac\n"), false);
-//     break;
-//   default:
-//     oled_write_P(PSTR("Mode: Undefined\n"), false);
-//   }
-//   // Print current layer
-//   oled_write_P(PSTR("Layer: "), false);
-//   switch (biton32(layer_state)) {
-//     case _M_COLEMAK:
-//     case _W_COLEMAK:
-//       oled_write_P(PSTR("Base\n"), false);
-//       break;
-//     case _M_RAISE:
-//     case _W_RAISE:
-//       oled_write_P(PSTR("Raise\n"), false);
-//       break;
-//     case _M_LOWER:
-//     case _W_LOWER:
-//       oled_write_P(PSTR("Lower\n"), false);
-//       break;
-//     case _ADJUST:
-//       oled_write_P(PSTR("Adjust\n"), false);
-//       break;
-//     default:
-//       oled_write_ln_P(PSTR("Undefined"), false);
-//   }
-
-//   uint8_t led_usb_state = host_keyboard_leds();
-//   oled_write_ln_P(led_usb_state & (1<<USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
-// }
 
 static void print_status_narrow(void) {
   // Print current mode
@@ -322,6 +277,8 @@ void oled_task_user(void) {
   }
 }
 #endif
+
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -401,12 +358,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+
+#ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
   if (index == 0) { /* First encoder */
     if (clockwise) {
-      tap_code(KC_PGDOWN);
+      tap_code(KC_VOLU);
     } else {
-      tap_code(KC_PGUP);
+      tap_code(KC_VOLD);
     }
   } else if (index == 1) {
     if (clockwise) {
@@ -416,4 +375,5 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
   }
 }
+#endif
 

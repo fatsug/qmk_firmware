@@ -28,3 +28,4 @@ for more options.
 
 #define TAPPING_FORCE_HOLD
 // #define TAPPING_TERM 100
+#define DEBUG_MATRIX_SCAN_RATE

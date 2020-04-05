@@ -142,12 +142,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               ____, ____, ____, ____, ____,       ____, ____, ____, ____, ____\
 ),
 /* RAISE
- * ,-----------------------------------------.                    ,-----------------------------------------.
+ * ,----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd | DLine| Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del |      |
+ * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del | Bspc |
  * |------+------+------+------+------+------|  MUTE  |    |       |------+------+------+------+------+------|
  * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -155,18 +155,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-
 [_M_RAISE] = LAYOUT_kc( \
   ____, ____ , ____ , ____ , ____ , ____,                     ____,  ____  , ____,  ____ ,  ____ ,____, \
-  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     PGUP, M_PRVWD,   UP,M_NXTWD,M_DLINE,____, \
-  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                     PGDN,    LEFT, DOWN,   RGHT,   DEL, XXXX, \
+  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     PGUP, M_PRVWD,   UP,M_NXTWD,M_DLINE,BSPC, \
+  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                     PGDN,    LEFT, DOWN,   RGHT,   DEL, BSPC, \
   ____,M_UNDO, M_CUT,M_COPY,M_PASTE,XXXX,  ____,       ____,  XXXX, M_LSTRT, XXXX, M_LEND,  XXXX, ____, \
             ____, ____, ____, ____,  ____, ____,       ____, ____, ____, ____ \
 ),
 [_W_RAISE] = LAYOUT_kc( \
   ____, ____ , ____ , ____ , ____ , ____,                     ____,  ____  , ____,  ____ ,  ____ , ____, \
-  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     PGUP, W_PRVWD,   UP,W_NXTWD,W_DLINE, ____, \
-  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                     PGDN,    LEFT, DOWN,   RGHT,    DEL, XXXX, \
+  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     PGUP, W_PRVWD,   UP,W_NXTWD,W_DLINE, BSPC, \
+  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                     PGDN,    LEFT, DOWN,   RGHT,    DEL, BSPC, \
   ____,W_UNDO, W_CUT,W_COPY,W_PASTE,XXXX,  ____,       ____,  XXXX, W_LSTRT, XXXX, W_LEND,   XXXX, ____, \
             ____, ____, ____, ____,  ____, ____,       ____, ____, ____, ____ \
 ),
@@ -194,10 +193,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 void keyboard_post_init_user(void) {
-  // Customise these values to desired behaviour
   debug_enable=true;
-  debug_matrix=true;
-  debug_keyboard=true;
+//   debug_matrix=true;
+//   debug_keyboard=true;
   //debug_mouse=true;
 }
 
@@ -261,7 +259,6 @@ static void print_status_narrow(void) {
   oled_write_ln_P(led_usb_state & (1<<USB_LED_CAPS_LOCK) ? PSTR("CPSLK") : PSTR("     "), false);
 }
 
-
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (is_keyboard_master()) {
     return OLED_ROTATION_270;
@@ -277,8 +274,6 @@ void oled_task_user(void) {
   }
 }
 #endif
-
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {

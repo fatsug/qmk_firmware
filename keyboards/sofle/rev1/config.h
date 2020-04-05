@@ -55,6 +55,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL
 #define SERIAL_USE_MULTI_TRANSACTION
 #define SOFT_SERIAL_PIN D2
+/* 0 is experimental, Use 1 if there are issues */
+#define SELECT_SOFT_SERIAL_SPEED 0
 
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION

@@ -1,5 +1,4 @@
-#include "sofle.h"
-//#include QMK_KEYBOARD_H
+#include QMK_KEYBOARD_H
 
 
 enum sofle_layers {
@@ -192,13 +191,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-void keyboard_post_init_user(void) {
-  debug_enable=true;
-//   debug_matrix=true;
-//   debug_keyboard=true;
-  //debug_mouse=true;
-}
-
 #ifdef OLED_DRIVER_ENABLE
 static void render_logo(void) {
   static const char PROGMEM qmk_logo[] = {
@@ -356,7 +348,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
-  if (index == 0) { /* First encoder */
+  if (index == 0) {
     if (clockwise) {
       tap_code(KC_VOLU);
     } else {

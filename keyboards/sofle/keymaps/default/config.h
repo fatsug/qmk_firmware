@@ -23,9 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 see https://docs.qmk.fm/#/feature_split_keyboard?id=setting-handedness
 for more options.
 */
-
 #define MASTER_LEFT
 
 #define TAPPING_FORCE_HOLD
-// #define TAPPING_TERM 100
-#define DEBUG_MATRIX_SCAN_RATE

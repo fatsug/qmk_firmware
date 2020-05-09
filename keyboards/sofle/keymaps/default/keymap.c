@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -74,14 +74,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
-           LCTRL,LALT,LGUI,M_LOWER, ENT,       SPC,  M_RAISE, RGUI, RALT, RCTRL \
+           LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_QWERTY] = LAYOUT_kc( \
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       XXXX,   N,    M, COMM,  DOT, SLSH,  RSFT, \
-           LGUI, LALT,LCTRL,W_LOWER,ENT,        SPC,  W_RAISE, RCTRL,RALT, RGUI \
+           LGUI, LALT,LCTRL,W_LOWER,SPC,        ENT,  W_RAISE, RCTRL,RALT, RGUI \
 ),
 /*
  * COLEMAK
@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   K  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -104,14 +104,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       XXXX,   K,    M, COMM,  DOT, SLSH,  RSFT, \
-           LCTRL,LALT,LGUI,M_LOWER, ENT,       SPC,  M_RAISE, RGUI, RALT, RCTRL \
+           LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_COLEMAK] = LAYOUT_kc( \
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,        XXXX,  K,    M, COMM,  DOT, SLSH,  RSFT, \
-           LGUI, LALT,LCTRL,W_LOWER,ENT,        SPC,  W_RAISE, RCTRL,RALT, RGUI \
+           LGUI, LALT,LCTRL,W_LOWER,SPC,        ENT,  W_RAISE, RCTRL,RALT, RGUI \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * | Shift|  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -151,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE  |    |       |------+------+------+------+------+------|
  * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -180,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      | PREV | PLAY | NEXT |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */

@@ -362,13 +362,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
   if (index == 0) { /* First encoder, assuming master/left? */
-    if(IS_LAYER_ON(_W_RAISE)) { // Raise: page up/down
+    if(IS_LAYER_ON(_W_RAISE) || IS_LAYER_ON(_M_RAISE)) { // Raise: page up/down
       if (clockwise) {
         tap_code(KC_PGDOWN);
       } else {
         tap_code(KC_PGUP);
       }
-    } else if (IS_LAYER_ON(_W_LOWER)) { // Lower: scroll tabs
+    } else if (IS_LAYER_ON(_W_LOWER) || IS_LAYER_ON(_M_LOWER)) { // Lower: scroll tabs
       if (clockwise){
         SEND_STRING(SS_LCTL(SS_TAP(X_TAB)));
       } else {
@@ -382,7 +382,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
       }
     }
   } else if (index == 1) { /* Second encodeer */
-    if(IS_LAYER_ON(_W_RAISE)) { // Raise: change tracks
+    if(IS_LAYER_ON(_W_RAISE) || IS_LAYER_ON(_M_RAISE)) { // Raise: change tracks
       if (clockwise) {
         tap_code(KC_MNXT);
       } else {

@@ -73,14 +73,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, MUTE,       KC_MPLY,N,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   N,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_QWERTY] = LAYOUT_kc( \
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, MUTE,       KC_MPLY,N,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   N,    M, COMM,  DOT, SLSH,  RSFT, \
            LGUI, LALT,LCTRL,W_LOWER,SPC,       ENT,  W_RAISE, RCTRL,RALT, RGUI \
 ),
 /*
@@ -103,14 +103,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, MUTE,       KC_MPLY,K,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   K,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_COLEMAK] = LAYOUT_kc( \
   GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
-  LSFT,  Z,   X,    C,    V,    B, MUTE,       KC_MPLY,K,    M, COMM,  DOT, SLSH,  RSFT, \
+  LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   K,    M, COMM,  DOT, SLSH,  RSFT, \
            LGUI, LALT,LCTRL,W_LOWER,SPC,       ENT,  W_RAISE, RCTRL,RALT, RGUI \
 ),
 /* LOWER

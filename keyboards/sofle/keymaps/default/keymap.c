@@ -361,17 +361,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
-  if (index == 0) { /* First encoder */
-    if (clockwise) {
-      tap_code(KC_VOLU);
-    } else {
-      tap_code(KC_VOLD);
+  if (index == 0) { /* First encoder, assuming master/left? */
+    if(IS_LAYER_ON(_W_RAISE)) { // Raise: page up/down
+      if (clockwise) {
+        tap_code(KC_PGDOWN);
+      } else {
+        tap_code(KC_PGUP);
+      }
+    } else if (IS_LAYER_ON(_W_LOWER)) { // Lower: scroll tabs
+      if (clockwise){
+        SEND_STRING(SS_LCTL(SS_TAP(X_TAB)));
+      } else {
+        SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_TAB))));
+      }
+    } else { // Defaut: emulate mouse scrollwheel
+      if (clockwise){
+        tap_code(KC_MS_WH_DOWN);
+      } else {
+        tap_code(KC_MS_WH_UP);
+      }
     }
-  } else if (index == 1) {
-    if (clockwise) {
-      tap_code(KC_PGDOWN);
-    } else {
-      tap_code(KC_PGUP);
+  } else if (index == 1) { /* Second encodeer */
+    if(IS_LAYER_ON(_W_RAISE)) { // Raise: change tracks
+      if (clockwise) {
+        tap_code(KC_MNXT);
+      } else {
+        tap_code(KC_MPRV);
+      }
+    }
+    else { // Default: volume up/down
+      if (clockwise) {
+        tap_code(KC_VOLU);
+      } else {
+        tap_code(KC_VOLD);
+      }
     }
   }
 }

@@ -37,6 +37,8 @@ enum custom_keycodes {
 #define KC_W_LSTRT   KC_HOME
 #define KC_W_LEND    KC_END
 #define KC_W_DLINE   LCTL(KC_BSPC)
+#define KC_W_ABHME   LCTL(KC_HOME)
+#define KC_W_ABEND   LCTL(KC_END)
 
 /* Mac variants */
 #define KC_M_UNDO  LGUI(KC_Z)
@@ -48,6 +50,8 @@ enum custom_keycodes {
 #define KC_M_LSTRT LGUI(KC_LEFT)
 #define KC_M_LEND  LGUI(KC_RIGHT)
 #define KC_M_DLINE LGUI(KC_BSPC)
+#define KC_M_ABHME LGUI(KC_UP)
+#define KC_M_ABEND LGUI(KC_DOWN)
 
 #define KC_____ KC_TRNS
 #define KC_XXXX KC_NO
@@ -145,11 +149,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd | DLine| Bspc |
+ * | Esc  | Ins  | Pscr | Menu |      |      |                    | LHome| !End | !Home| LEnd | DLine| Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del |      |
+ * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------| Left | Down |  Up  | Rigth|  Del |      |
  * |------+------+------+------+------+------|  MUTE |    | P/P   |------+------+------+------+------+------|
- * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      | Shift|
+ * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------| PWrd | PgDwn| PgUp | NWrd |      | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -157,18 +161,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_M_RAISE] = LAYOUT_kc( \
-  ____, ____ , ____ , ____ , ____ , ____,                     ____,  ____  , ____,  ____ ,  ____ ,____, \
-  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     PGUP, M_PRVWD,   UP,M_NXTWD,M_DLINE,____, \
-  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                     PGDN,    LEFT, DOWN,   RGHT,   DEL, XXXX, \
-  ____,M_UNDO, M_CUT,M_COPY,M_PASTE,XXXX,  ____,       ____,  XXXX, M_LSTRT, XXXX, M_LEND,  XXXX, ____, \
-            ____, ____, ____, ____,  ____, ____,       ____, ____, ____, ____ \
+  ____, ____ , ____ , ____ , ____ , ____,                       ____ ,   ____ ,   ____ ,  ____ ,   ____ , ____, \
+  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     M_LSTRT, M_ABEND, M_ABHME, M_LEND, M_DLINE, ____, \
+  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                        LEFT,    DOWN,      UP,   RGHT,     DEL, XXXX, \
+  ____,M_UNDO, M_CUT,M_COPY,M_PASTE,XXXX,  ____,       ____,  M_PRVWD,    PGDN,    PGUP,M_NXTWD,    XXXX, ____, \
+                  ____, ____, ____, ____,  ____,       ____, ____, ____, ____, ____ \
 ),
 [_W_RAISE] = LAYOUT_kc( \
-  ____, ____ , ____ , ____ , ____ , ____,                     ____,  ____  , ____,  ____ ,  ____ , ____, \
-  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     PGUP, W_PRVWD,   UP,W_NXTWD,W_DLINE, ____, \
-  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                     PGDN,    LEFT, DOWN,   RGHT,    DEL, XXXX, \
-  ____,W_UNDO, W_CUT,W_COPY,W_PASTE,XXXX,  ____,       ____,  XXXX, W_LSTRT, XXXX, W_LEND,   XXXX, ____, \
-            ____, ____, ____, ____,  ____, ____,       ____, ____, ____, ____ \
+  ____, ____ , ____ , ____ , ____ , ____,                     ____,     ____  ,    ____,  ____ ,   ____ , ____, \
+  ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     W_LSTRT, W_ABEND, W_ABHME, W_LEND, W_DLINE, ____, \
+  ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                        LEFT,    DOWN,      UP,   RGHT,     DEL, XXXX, \
+  ____,W_UNDO, W_CUT,W_COPY,W_PASTE,XXXX,  ____,       ____,  W_PRVWD,    PGDN,    PGUP,W_NXTWD,    XXXX, ____, \
+                  ____, ____, ____, ____,  ____,       ____, ____, ____, ____, ____ \
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.

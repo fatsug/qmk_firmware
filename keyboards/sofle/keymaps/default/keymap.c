@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC\`|   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -74,14 +74,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_M_QWERTY] = LAYOUT_kc( \
-  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  ESC,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   TAB,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   N,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_QWERTY] = LAYOUT_kc( \
-  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  ESC,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   TAB,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   N,    M, COMM,  DOT, SLSH,  RSFT, \
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * COLEMAK
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC\`|   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   F  |   P  |   G  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -104,14 +104,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_M_COLEMAK] = LAYOUT_kc( \
-  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  ESC,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   TAB,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   K,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_COLEMAK] = LAYOUT_kc( \
-  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  ESC,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
   TAB,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   K,    M, COMM,  DOT, SLSH,  RSFT, \
@@ -119,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
+ * |  `   |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | F12  |
+ * | Tab  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
  * |------+------+------+------+------+------|  MUTE |    | P/P   |------+------+------+------+------+------|
@@ -132,24 +132,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_M_LOWER] = LAYOUT_kc( \
-  ____,   F1,   F2,   F3,   F4,   F5,                     F6,   F7,   F8,   F9,  F10,  F11,\
+  GRV,    F1,   F2,   F3,   F4,   F5,                     F6,   F7,   F8,   F9,  F10,  F11,\
   ____,    1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,  F12, \
   ____, EXLM,   AT, HASH,  DLR, PERC,                   CIRC, AMPR, ASTR, LPRN, RPRN, PIPE, \
   ____,  EQL, MINS, PLUS, LCBR, RCBR, ____,       ____, LBRC, RBRC, SCLN, COLN, BSLS, ____, \
               ____, ____, ____, ____, ____,       ____, ____, ____, ____, ____\
 ),
 [_W_LOWER] = LAYOUT_kc( \
-  ____,   F1,   F2,   F3,   F4,   F5,                     F6,   F7,   F8,   F9,  F10,  F11,\
-  ____,     1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,  F12, \
+  GRV,    F1,   F2,   F3,   F4,   F5,                     F6,   F7,   F8,   F9,  F10,  F11,\
+  ____,    1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,  F12, \
   ____, EXLM,   AT, HASH,  DLR, PERC,                   CIRC, AMPR, ASTR, LPRN, RPRN, PIPE, \
   ____,  EQL, MINS, PLUS, LCBR, RCBR, ____,       ____, LBRC, RBRC, SCLN, COLN, BSLS, ____, \
               ____, ____, ____, ____, ____,       ____, ____, ____, ____, ____\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |  `   |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Esc  | Ins  | Pscr | Menu |      |      |                    | LHome| !End | !Home| LEnd | DLine| Bspc |
+ * | Tab  | Ins  | Pscr | Menu |      |      |                    | LHome| !End | !Home| LEnd | DLine| Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------| Left | Down |  Up  | Rigth|  Del |      |
  * |------+------+------+------+------+------|  MUTE |    | P/P   |------+------+------+------+------+------|
@@ -161,14 +161,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_M_RAISE] = LAYOUT_kc( \
-  ____, ____ , ____ , ____ , ____ , ____,                       ____ ,   ____ ,   ____ ,  ____ ,   ____ , ____, \
+  GRV,  ____ , ____ , ____ , ____ , ____,                       ____ ,   ____ ,   ____ ,  ____ ,   ____ , ____, \
   ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     M_LSTRT, M_ABEND, M_ABHME, M_LEND, M_DLINE, ____, \
   ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                        LEFT,    DOWN,      UP,   RGHT,     DEL, XXXX, \
   ____,M_UNDO, M_CUT,M_COPY,M_PASTE,XXXX,  ____,       ____,  M_PRVWD,    PGDN,    PGUP,M_NXTWD,    XXXX, ____, \
                   ____, ____, ____, ____,  ____,       ____, ____, ____, ____, ____ \
 ),
 [_W_RAISE] = LAYOUT_kc( \
-  ____, ____ , ____ , ____ , ____ , ____,                     ____,     ____  ,    ____,  ____ ,   ____ , ____, \
+  GRV,  ____ , ____ , ____ , ____ , ____,                     ____,     ____  ,    ____,  ____ ,   ____ , ____, \
   ____,   INS,  PSCR,   APP,  XXXX, XXXX,                     W_LSTRT, W_ABEND, W_ABHME, W_LEND, W_DLINE, ____, \
   ____,  LALT,  LCTL,  LSFT,  XXXX, CAPS,                        LEFT,    DOWN,      UP,   RGHT,     DEL, XXXX, \
   ____,W_UNDO, W_CUT,W_COPY,W_PASTE,XXXX,  ____,       ____,  W_PRVWD,    PGDN,    PGUP,W_NXTWD,    XXXX, ____, \

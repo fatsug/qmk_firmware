@@ -57,9 +57,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * | ESC\`|   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|       |    | P/P   |------+------+------+------+------+------|
@@ -70,15 +70,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_M_QWERTY] = LAYOUT_kc( \
-  GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
-  ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
+  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  TAB,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   N,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_QWERTY] = LAYOUT_kc( \
-  GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
-  ESC,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
+  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  TAB,   Q,   W,    E,    R,    T,                     Y,    U,    I,    O,    P,  BSPC, \
   TAB,   A,   S,    D,    F,    G,                     H,    J,    K,    L, SCLN,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   N,    M, COMM,  DOT, SLSH,  RSFT, \
            LGUI, LALT,LCTRL,W_LOWER,SPC,       ENT,  W_RAISE, RCTRL,RALT, RGUI \
@@ -86,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * COLEMAK
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * | ESC\`|   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   Q  |   W  |   F  |   P  |   G  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
+ * | Tab  |   Q  |   W  |   F  |   P  |   G  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | TAB  |   A  |   R  |   S  |   T  |   D  |-------.    ,-------|   H  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|  MUTE |    | P/P   |------+------+------+------+------+------|
@@ -100,15 +100,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_M_COLEMAK] = LAYOUT_kc( \
-  GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
-  ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
+  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  TAB,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   K,    M, COMM,  DOT, SLSH,  RSFT, \
            LCTRL,LALT,LGUI,M_LOWER, SPC,       ENT,  M_RAISE, RGUI, RALT, RCTRL \
 ),
 [_W_COLEMAK] = LAYOUT_kc( \
-  GRV,   1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
-  ESC,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
+  GESC,  1,   2,    3,    4,    5,                     6,    7,    8,    9,    0,  GRV, \
+  TAB,   Q,   W,    F,    P,    G,                     J,    L,    U,    Y, SCLN,  BSPC, \
   TAB,   A,   R,    S,    T,    D,                     H,    N,    E,    I,    O,  QUOT, \
   LSFT,  Z,   X,    C,    V,    B, MUTE,       MPLY,   K,    M, COMM,  DOT, SLSH,  RSFT, \
            LGUI, LALT,LCTRL,W_LOWER,SPC,       ENT,  W_RAISE, RCTRL,RALT, RGUI \
@@ -129,14 +129,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_M_LOWER] = LAYOUT_kc( \
   ____,   F1,   F2,   F3,   F4,   F5,                     F6,   F7,   F8,   F9,  F10,  F11,\
-  GRV,     1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,  F12, \
+  ____,    1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,  F12, \
   ____, EXLM,   AT, HASH,  DLR, PERC,                   CIRC, AMPR, ASTR, LPRN, RPRN, PIPE, \
   ____,  EQL, MINS, PLUS, LCBR, RCBR, ____,       ____, LBRC, RBRC, SCLN, COLN, BSLS, ____, \
               ____, ____, ____, ____, ____,       ____, ____, ____, ____, ____\
 ),
 [_W_LOWER] = LAYOUT_kc( \
   ____,   F1,   F2,   F3,   F4,   F5,                     F6,   F7,   F8,   F9,  F10,  F11,\
-  GRV,     1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,  F12, \
+  ____,     1,    2,    3,    4,    5,                      6,    7,    8,    9,    0,  F12, \
   ____, EXLM,   AT, HASH,  DLR, PERC,                   CIRC, AMPR, ASTR, LPRN, RPRN, PIPE, \
   ____,  EQL, MINS, PLUS, LCBR, RCBR, ____,       ____, LBRC, RBRC, SCLN, COLN, BSLS, ____, \
               ____, ____, ____, ____, ____,       ____, ____, ____, ____, ____\

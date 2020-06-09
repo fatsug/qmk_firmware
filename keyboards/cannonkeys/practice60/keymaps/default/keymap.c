@@ -17,6 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 
+typedef union {
+  uint32_t raw;
+  struct {
+    bool     is_macos :1;
+  };
+} user_config_t;
+
+user_config_t user_config;
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -32,7 +41,9 @@ enum custom_keycodes {
   KC_COLEMAK,
   KC_LOWER,
   KC_RAISE,
-  KC_ADJUST
+  KC_ADJUST,
+  KC_ISMAC,
+  KC_TGOS
 };
 
 /*
@@ -79,16 +90,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT_60_ansi(
       RESET, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-    _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,          KC_R,    \
+    _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,          KC_R,    \
     _______, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______, _______, _______, _______, KC_MS_BTN1, KC_MS_BTN2,             _______, \
     _______,  _______, _______,                            _______,                            _______, _______, _______, _______
   )
 
  ,[_ADJUST] = LAYOUT_60_ansi(
-    RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_A, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK,              XXXXXXX, \
+    RESET,   KC_ISMAC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    KC_TGOS, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_A, \
+    XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK,              XXXXXXX, \
     _______,  _______, _______,                            _______,                            _______, _______, _______, _______
   )
 };
@@ -130,6 +141,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_ADJUST);
             }
             return false;
+        case KC_ISMAC:
+            if (record->event.pressed) {
+                if (user_config.is_macos) {
+                    register_code(KC_T);
+                    return false;
+                } else {
+                    register_code(KC_F);
+                    return false;
+                }
+            }
+            return false;
+        case KC_TGOS:
+            if (record->event.pressed) {
+                user_config.is_macos ^= 1;
+            }
+            return false;
     }
     return true;
+}
+
+void keyboard_post_init_user(void) {
+  // Call the keymap level matrix init.
+
+  // Read the user config from EEPROM
+  user_config.raw = eeconfig_read_user();
 }

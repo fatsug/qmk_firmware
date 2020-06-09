@@ -111,10 +111,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LOWER] = LAYOUT_60_ansi(
-    KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,    KC_F8,    KC_F9,     KC_F10,  KC_F11,   KC_F12,  KC_DEL,  \
-    KC_CAPS, RGB_MOD, KC_UP,   _______, _______, _______, _______, KC_LSTRT, KC_PRVWD, KC_NXTWD,  KC_LEND, KC_DLINE, _______, _______, \
-    _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, KC_LEFT, KC_DOWN,  KC_UP,    KC_RGHT,   _______, _______,           KC_L,    \
-    _______,  BL_DEC, KC_DEL,  _______, _______, _______, _______, _______,  _______,  KC_QWERTY, KC_COLEMAK,                 _______, \
+    KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,   KC_F7,    KC_F8,    KC_F9,     KC_F10,  KC_F11,   KC_F12,  KC_DEL,  \
+    KC_CAPS, RGB_MOD, KC_UP,   _______, _______, _______,  _______, KC_LSTRT, KC_PRVWD, KC_NXTWD,  KC_LEND, KC_DLINE, KC_PGUP, _______, \
+    _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_LSTRT, KC_LEFT, KC_DOWN,  KC_UP,    KC_RGHT,   _______, KC_PGDN,           KC_L,    \
+    _______,  BL_DEC, KC_DEL,  _______, _______, _______,  _______, _______,  _______,  KC_QWERTY, KC_COLEMAK,                 _______, \
     _______,  _______, _______,                            _______,                           _______, _______, _______, _______
   ),
 
@@ -175,14 +175,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_ISMAC:
             if (record->event.pressed) {
                 if (user_config.is_macos) {
-                    register_code(KC_T);
-                    return false;
+                    tap_code(KC_M);
                 } else {
-                    register_code(KC_F);
-                    return false;
+                    tap_code(KC_W);
                 }
             }
-            return false;
+            break;
         case KC_TGOS:
             if (record->event.pressed) {
                 user_config.is_macos ^= 1;
@@ -193,13 +191,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 if (user_config.is_macos) {
                     tap_code16(KC_M_LSTRT);
-                    return false;
                 } else {
-                    register_code(KC_W_LSTRT);
-                    return false;
+                    tap_code(KC_W_LSTRT);
                 }
             }
-            return false;
+            break;
         case KC_PRVWD:
             if (record->event.pressed) {
                 if (user_config.is_macos) {

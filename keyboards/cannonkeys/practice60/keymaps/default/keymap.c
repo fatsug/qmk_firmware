@@ -113,14 +113,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = LAYOUT_60_ansi(
     KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,   KC_F7,    KC_F8,    KC_F9,     KC_F10,  KC_F11,   KC_F12,  KC_DEL,  \
     KC_CAPS, RGB_MOD, KC_UP,   _______, _______, _______,  _______, KC_LSTRT, KC_PRVWD, KC_NXTWD,  KC_LEND, KC_DLINE, KC_PGUP, _______, \
-    _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_LSTRT, KC_LEFT, KC_DOWN,  KC_UP,    KC_RGHT,   _______, KC_PGDN,           KC_L,    \
+    _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_LSTRT, KC_LEFT, KC_DOWN,  KC_UP,    KC_RGHT,   KC_END,  KC_PGDN,           KC_L,    \
     _______,  BL_DEC, KC_DEL,  _______, _______, _______,  _______, _______,  _______,  KC_QWERTY, KC_COLEMAK,                 _______, \
     _______,  _______, _______,                            _______,                           _______, _______, _______, _______
   ),
 
   [_RAISE] = LAYOUT_60_ansi(
       RESET, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, _______, _______, _______, \
     _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,          KC_R,    \
     _______, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______, _______, _______, _______, KC_MS_BTN1, KC_MS_BTN2,             _______, \
     _______,  _______, _______,                            _______,                            _______, _______, _______, _______
@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ,[_ADJUST] = LAYOUT_60_ansi(
     RESET,   KC_ISMAC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     KC_TGOS, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_A, \
+    XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_A,    \
     XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK,              XXXXXXX, \
     _______,  _______, _______,                            _______,                            _______, _______, _______, _______
   )

@@ -200,6 +200,50 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
+        case KC_PRVWD:
+            if (record->event.pressed) {
+                if (user_config.is_macos) {
+                    tap_code16(KC_M_PRVWD);
+                    return false;
+                } else {
+                    tap_code16(KC_W_PRVWD);
+                    return false;
+                }
+            }
+            return false;
+        case KC_NXTWD:
+            if (record->event.pressed) {
+                if (user_config.is_macos) {
+                    tap_code16(KC_M_NXTWD);
+                    return false;
+                } else {
+                    tap_code16(KC_W_NXTWD);
+                    return false;
+                }
+            }
+            return false;
+        case KC_LEND:
+            if (record->event.pressed) {
+                if (user_config.is_macos) {
+                    tap_code16(KC_M_LEND);
+                    return false;
+                } else {
+                    tap_code16(KC_W_LEND);
+                    return false;
+                }
+            }
+            return false;
+        case KC_DLINE:
+            if (record->event.pressed) {
+                if (user_config.is_macos) {
+                    tap_code16(KC_M_DLINE);
+                    return false;
+                } else {
+                    tap_code16(KC_W_DLINE);
+                    return false;
+                }
+            }
+            return false;
     }
     return true;
 }

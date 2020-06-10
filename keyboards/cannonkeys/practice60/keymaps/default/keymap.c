@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,  KC_BSLS, \
     KC_LOWER, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,   KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,           KC_ENT,  \
     KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                    KC_RSFT, \
-    KC_LCTL,  KC_LGUI, KC_LALT,                        KC_SPC,                                    KC_LOWER, KC_RAISE, KC_APP, KC_RCTL
+    KC_LCTL,  KC_LGUI, KC_LALT,                        KC_SPC,                                KC_LOWER, KC_RAISE, KC_LEAD, KC_RCTL
   ),
 
   [_COLEMAK] = LAYOUT_60_ansi(
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,   KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_LBRC, KC_RBRC,  KC_BSLS, \
     KC_LOWER, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,   KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,           KC_ENT,  \
     KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                    KC_RSFT, \
-    KC_LCTL,  KC_LGUI, KC_LALT,                        KC_SPC,                                KC_LOWER, KC_RAISE, KC_APP, KC_RCTL
+    KC_LCTL,  KC_LGUI, KC_LALT,                        KC_SPC,                               _______, _______, _______, _______
   ),
 
   [_LOWER] = LAYOUT_60_ansi(
@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_CAPS, RGB_MOD, KC_UP,   _______, _______, _______,  _______, KC_LSTRT, KC_PRVWD, KC_NXTWD,  KC_LEND, KC_DLINE, KC_PGUP, _______, \
     _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_LSTRT, KC_LEFT, KC_DOWN,  KC_UP,    KC_RGHT,   KC_END,  KC_PGDN,           KC_L,    \
     _______,  BL_DEC, KC_DEL,  _______, _______, _______,  _______, _______,  _______,  KC_QWERTY, KC_COLEMAK,                 _______, \
-    _______,  _______, _______,                            _______,                           _______, _______, _______, _______
+    _______,  _______, _______,                            _______,                                  _______, _______, KC_APP, _______
   ),
 
   [_RAISE] = LAYOUT_60_ansi(
@@ -249,4 +249,53 @@ void keyboard_post_init_user(void) {
 
   // Read the user config from EEPROM
   user_config.raw = eeconfig_read_user();
+}
+
+bool did_leader_succeed;
+#ifdef AUDIO_ENABLE
+float leader_start[][2] = SONG(ONE_UP_SOUND );
+float leader_succeed[][2] = SONG(ALL_STAR);
+float leader_fail[][2] = SONG(RICK_ROLL);
+#endif
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    did_leader_succeed = leading = false;
+
+    SEQ_ONE_KEY(KC_E) {
+      // Anything you can do in a macro.
+      SEND_STRING(SS_LCTL(SS_LSFT("t")));
+      did_leader_succeed = true;
+    } else
+    SEQ_TWO_KEYS(KC_E, KC_D) {
+      SEND_STRING(SS_LGUI("r") "cmd\n" SS_LCTL("c"));
+      did_leader_succeed = true;
+    }
+
+    SEQ_TWO_KEYS(KC_1, KC_G) {
+      SEND_STRING("1nd13r0ck@gmail.com");
+      did_leader_succeed = true;
+    }
+
+    leader_end();
+  }
+}
+
+void leader_start(void) {
+#ifdef AUDIO_ENABLE
+    PLAY_SONG(leader_start);
+#endif
+}
+
+void leader_end(void) {
+  if (did_leader_succeed) {
+#ifdef AUDIO_ENABLE
+    PLAY_SONG(leader_succeed);
+#endif
+  } else {
+#ifdef AUDIO_ENABLE
+    PLAY_SONG(leader_fail);
+#endif
+  }
 }

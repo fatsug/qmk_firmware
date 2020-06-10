@@ -278,6 +278,16 @@ void matrix_scan_user(void) {
       did_leader_succeed = true;
     }
 
+    SEQ_THREE_KEYS(KC_G, KC_K, KC_G) {
+      SEND_STRING("gus.kohtz@gmail.com");
+      did_leader_succeed = true;
+    }
+
+    SEQ_THREE_KEYS(KC_P, KC_P, KC_Q) {
+      SEND_STRING("Please let me know if you have any questions.");
+      did_leader_succeed = true;
+    }
+
     leader_end();
   }
 }

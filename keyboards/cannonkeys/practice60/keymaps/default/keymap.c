@@ -82,13 +82,13 @@ enum custom_keycodes {
  * ,---------------------------------------------------------------------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |  -_  |   =+ |  Bspc  |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+--------|
- * |  Tab   |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  [{  |   ]} | RGUI |
+ * |  Tab   |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  [{  |   ]} |  \|  |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+--------|
- * |   Caps   |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |  ;:  |  '"  |    Ent    |
+ * |  Lower   |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |  ;:  |  '"  |    Ent    |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+--------|
  * |    LShift   |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |    RShift     |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+--------|
- * |  LCTL | LGUI  |  LALT  |               S P A C E                   |  RALT  | RGUI | MO(1)| RCTRL |
+ * |  LCTL | LGUI  |  LALT  |               S P A C E                   | Lower  | Raise|Leader| RCTRL |
  * .------+------+------+------+------+------|------+------+------+------+------+------+------+--------.
  */
 
@@ -232,10 +232,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_DLINE:
             if (record->event.pressed) {
                 if (user_config.is_macos) {
-                    tap_code16(KC_M_DLINE);
+                    send_string(SS_DOWN(X_LALT)SS_DOWN(X_LSFT)SS_TAP(X_RGHT)SS_TAP(X_BSPC)SS_UP(X_LSFT)SS_UP(X_LALT));
                     return false;
                 } else {
-                    tap_code16(KC_W_DLINE);
+                    send_string(SS_DOWN(X_LCTL)SS_DOWN(X_LSFT)SS_TAP(X_HOME)SS_TAP(X_BSPC)SS_UP(X_LCTL)SS_UP(X_LSFT));
+                    // tap_code16(KC_W_DLINE);
                     return false;
                 }
             }

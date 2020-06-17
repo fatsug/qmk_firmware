@@ -257,7 +257,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     send_string(SS_DOWN(X_LALT)SS_DOWN(X_LSFT)SS_TAP(X_RGHT)SS_TAP(X_BSPC)SS_UP(X_LSFT)SS_UP(X_LALT));
                     return false;
                 } else {
-                    send_string(SS_DOWN(X_LCTL)SS_DOWN(X_LSFT)SS_TAP(X_HOME)SS_TAP(X_BSPC)SS_UP(X_LCTL)SS_UP(X_LSFT));
+                    send_string(SS_DOWN(X_LSFT)SS_TAP(X_HOME)SS_TAP(X_BSPC)SS_UP(X_LSFT));
                     return false;
                 }
             }
@@ -292,16 +292,6 @@ void matrix_scan_user(void) {
     } else
     SEQ_TWO_KEYS(KC_E, KC_D) {
       SEND_STRING(SS_LGUI("r") "cmd\n" SS_LCTL("c"));
-      did_leader_succeed = true;
-    }
-
-    SEQ_TWO_KEYS(KC_1, KC_G) {
-      SEND_STRING("1nd13r0ck@gmail.com");
-      did_leader_succeed = true;
-    }
-
-    SEQ_THREE_KEYS(KC_G, KC_K, KC_G) {
-      SEND_STRING("gus.kohtz@gmail.com");
       did_leader_succeed = true;
     }
 

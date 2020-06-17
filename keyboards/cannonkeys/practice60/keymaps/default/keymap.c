@@ -48,7 +48,8 @@ enum custom_keycodes {
   KC_NXTWD,
   KC_LSTRT,
   KC_LEND,
-  KC_DLINE
+  KC_DLINE,
+  KC_ABEND
 };
 
 /* Linux/win variants */
@@ -60,7 +61,6 @@ enum custom_keycodes {
 #define KC_W_NXTWD   LCTL(KC_RIGHT)
 #define KC_W_LSTRT   KC_HOME
 #define KC_W_LEND    KC_END
-#define KC_W_DLINE   LCTL(KC_BSPC)
 #define KC_W_ABHME   LCTL(KC_HOME)
 #define KC_W_ABEND   LCTL(KC_END)
 
@@ -73,7 +73,6 @@ enum custom_keycodes {
 #define KC_M_NXTWD LGUI(KC_RIGHT)
 #define KC_M_LSTRT LALT(KC_LEFT)
 #define KC_M_LEND  LALT(KC_RIGHT)
-#define KC_M_DLINE LGUI(KC_BSPC)
 #define KC_M_ABHME LALT(KC_UP)
 #define KC_M_ABEND LALT(KC_DOWN)
 
@@ -112,8 +111,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_60_ansi(
     KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,        KC_DEL, \
-    KC_CAPS,     RGB_MOD, KC_UP,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSTRT, KC_PRVWD, KC_NXTWD, KC_LEND, KC_DLINE, KC_PGUP, XXXXXXX, \
-    _______,       KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_LSTRT, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, KC_END,  KC_PGDN,            KC_L, \
+    KC_CAPS,     RGB_MOD, KC_UP,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSTRT, KC_PRVWD, KC_NXTWD, KC_LEND, KC_DLINE, KC_PGUP, KC_PGDN, \
+    _______,       KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_LSTRT, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, KC_END,  KC_ABEND,           KC_L, \
     _______,          BL_DEC,  KC_DEL,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK,         _______, \
     _______,  _______, _______,                            _______,                          _______,    _______,   KC_APP,   _______
   ),
@@ -131,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TGOS,     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     XXXXXXX,       XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,           KC_A, \
     XXXXXXX,          XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK,         XXXXXXX, \
-    _______,  _______, _______,                            _______,                            _______,   _______,  _______, _______
+    _______,  _______, _______,                            _______,                            _______,   _______,  _______,  _______
   )
 };
 
@@ -229,6 +228,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
+        case KC_ABEND:
+            if (record->event.pressed) {
+                if (user_config.is_macos) {
+                    tap_code16(KC_M_ABEND);
+                    return false;
+                } else {
+                    tap_code16(KC_W_ABEND);
+                    return false;
+                }
+            }
+            return false;
         case KC_DLINE:
             if (record->event.pressed) {
                 if (user_config.is_macos) {
@@ -236,7 +246,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     return false;
                 } else {
                     send_string(SS_DOWN(X_LCTL)SS_DOWN(X_LSFT)SS_TAP(X_HOME)SS_TAP(X_BSPC)SS_UP(X_LCTL)SS_UP(X_LSFT));
-                    // tap_code16(KC_W_DLINE);
                     return false;
                 }
             }

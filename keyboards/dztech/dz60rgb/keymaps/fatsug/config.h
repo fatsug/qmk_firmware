@@ -78,3 +78,10 @@
 /* Customizations */
 #define LEADER_TIMEOUT 300
 #define LEADER_PER_KEY_TIMING
+
+//Auto Shift Settings (https://docs.qmk.fm/#/feature_auto_shift)
+#define AUTO_SHIFT_TIMEOUT 175
+#define NO_AUTO_SHIFT_SPECIAL
+#define NO_AUTO_SHIFT_NUMERIC
+
+

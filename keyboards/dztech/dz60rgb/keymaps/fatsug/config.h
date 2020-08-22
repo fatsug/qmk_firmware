@@ -72,3 +72,7 @@
 
 // #include "config_led.h"
 // #include "dz60rgb.h"
+
+/* Customizations */
+#define LEADER_TIMEOUT 300
+#define LEADER_PER_KEY_TIMING

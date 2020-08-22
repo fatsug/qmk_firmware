@@ -2,8 +2,9 @@
 
 #define FORCE_NKRO
 
-#define PERMISSIVE_HOLD
-#define TAPPING_TERM 150
+// #define PERMISSIVE_HOLD
+// #define TAPPING_TERM 150
+// #define TAPPING_FORCE_HOLD
 
 #define TAP_HOLD_CAPS_DELAY 0
 
@@ -69,7 +70,6 @@
 #endif // !NO_PRINT
 
 #define NO_ACTION_ONESHOT
-#define TAPPING_FORCE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
 
 // #include "config_led.h"

@@ -12,3 +12,4 @@ EXTRAFLAGS += -flto
 
 LEADER_ENABLE = yes
 AUTO_SHIFT_ENABLE = yes      # Auto Shift
+TAP_DANCE_ENABLE = yes

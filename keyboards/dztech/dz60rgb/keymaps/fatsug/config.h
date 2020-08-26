@@ -86,3 +86,7 @@
 #define NO_AUTO_SHIFT_NUMERIC
 
 
+// One Shot Layers and Tap Dance
+#define TAPPING_TERM 200
+#define ONESHOT_TAP_TOGGLE 5
+#define ONESHOT_TIMEOUT 5000

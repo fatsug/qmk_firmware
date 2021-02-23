@@ -12,6 +12,7 @@ user_config_t user_config;
 enum custom_keycodes {
   KC_QWERTY = SAFE_RANGE,
   KC_COLEMAK,
+  KC_COLEMAK_DH,
   KC_LOWER,
   KC_RAISE,
   KC_ADJUST,
@@ -57,10 +58,11 @@ enum custom_keycodes {
 // entirely and just use numbers.
 #define _BASE 0
 #define _COLEMAK 1
-#define _LOWER 2
-#define _RAISE 3
-#define _ADJUST 4
-#define _NAVI 5
+#define _COLEMAK_DH 2
+#define _LOWER 3
+#define _RAISE 4
+#define _ADJUST 5
+#define _NAVI 6
 
 /*
  * QWERTY
@@ -94,11 +96,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______, _______,                        _______,                          _______, _______, _______,  _______, _______
     ),
 
+    [_COLEMAK_DH] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,      _______, \
+        _______,     _______, _______, KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, _______, _______,  _______, \
+        _______,       _______, KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    _______,         _______, \
+        _______,          _______, _______,  _______,    KC_D,    KC_V,   KC_K,     KC_H, _______, _______, _______,    _______,  _______, \
+        _______,  _______, _______,                        _______,                          _______, _______, _______,  _______, _______
+    ),
+
     [_LOWER] = LAYOUT(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,        KC_DEL, \
         KC_CAPS,     RGB_MOD, KC_UP,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSTRT, KC_PRVWD, KC_NXTWD, KC_LEND, KC_DLINE, KC_PGDN, KC_PGUP, \
         _______,       KC_LEFT, KC_DOWN, KC_RGHT, KC_ABHOM, KC_LSTRT, KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, KC_END,  KC_ABEND,          KC_L, \
-        _______,          BL_DEC,  KC_DEL,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK, _______, _______, \
+        _______,          BL_DEC,  KC_DEL,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   _______, _______, \
         _______,  _______, _______,                            KC_L,                          _______,_______, _______, KC_APP, _______
     ),
 
@@ -114,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RESET,  KC_ISMAC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, \
         KC_TGOS,     XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_MOD, RGB_TOG, \
         XXXXXXX,       XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         EEP_RST, \
-        XXXXXXX,          XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK, KC_ASTG, KC_ASUP, KC_ASRP, \
+        XXXXXXX,          XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QWERTY, KC_COLEMAK, KC_COLEMAK_DH, KC_ASTG, KC_ASUP, KC_ASRP, \
         _______,  _______, _______,                            KC_A,                           _______, _______, _______, KC_ASDN, _______
     ),
 
@@ -138,6 +148,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_COLEMAK:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_COLEMAK);
+            }
+            return false;
+        case KC_COLEMAK_DH:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_COLEMAK_DH);
             }
             return false;
         case KC_LOWER:

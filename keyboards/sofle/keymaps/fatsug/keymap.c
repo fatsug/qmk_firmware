@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 
+    KC_DLINE,
 typedef union {
   uint32_t raw;
   struct {
@@ -28,7 +29,6 @@ enum custom_keycodes {
     KC_NXTWD,
     KC_LSTRT,
     KC_LEND,
-    KC_DLINE,
     KC_ISMAC,
     KC_TGOS,
     KC_ABHOM,

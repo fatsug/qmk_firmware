@@ -38,35 +38,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------------'
    */
 
-  LAYOUT_directional(
+  LAYOUT_directional( /* Layer: 1 Lower */
       KC_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_F11, KC_F12, _______, KC_DEL,
       _______, RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, KC_MUTE, KC__VOLDOWN, KC__VOLUP, KC_MRWD, KC_MFFD,
       _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
-      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, KC_PGUP, RESET,
-      _______, _______, _______, _______, _______, _______, _______, MO(3), KC_HOME, KC_PGDOWN, KC_END
+      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, KC_PGUP, XXXXXXX,
+      _______, _______, _______, _______, _______, _______,             _______, MO(3),                     LGUI(KC_LEFT), KC_PGDOWN, LGUI(KC_RIGHT)
       ),
 
-  LAYOUT_directional(
+  LAYOUT_directional( /* Layer: 2 Raise */
       KC_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_F11, KC_F12, _______, _______,
       _______, RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, KC_MUTE, KC__VOLDOWN, KC__VOLUP, KC_MRWD, KC_MFFD,
       _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
-      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, KC_PGUP, RESET,
-      _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_2, KC_END
+      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______,   KC_MPLY, KC_VOLU, KC_MUTE,
+      _______, _______, _______, _______, _______, _______,         _______, _______,                               KC_MPRV, KC_VOLD, KC_MNXT
       ),
 
-  LAYOUT_directional(
+  LAYOUT_directional( /* Layer: 3 Adjust */
       KC_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_F11, KC_F12, _______, RESET,
       _______, RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_VAD, KC_INS,  _______, KC_PSCR, KC__VOLUP, KC_MRWD, KC_MFFD,
       _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
-      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______, KC_MPLY, KC_VOLU, KC_MUTE,
-      _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_VOLD, KC_MNXT
+      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,              _______, _______,                        _______, _______, _______
       ),
 
-  LAYOUT_directional(
+  LAYOUT_directional( /* Layer: 4 Navi */
       KC_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_F11, KC_F12, _______, XXXXXXX,
       _______, RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, KC_MUTE, KC__VOLDOWN, KC__VOLUP, KC_MRWD, KC_MFFD,
       _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
-      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, KC_PGUP, RESET,
-      _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_4, KC_END
+      KC_MPLY, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, LALT(KC_UP), _______,
+      _______, _______, _______, _______, _______, _______,         _______, _______,                       LALT(KC_LEFT), LALT(KC_DOWN), LALT(KC_RIGHT)
       )
 };
+
